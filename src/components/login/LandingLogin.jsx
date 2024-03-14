@@ -11,7 +11,10 @@ function LandingLogin() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,6 +29,9 @@ function LandingLogin() {
     e.preventDefault();
 
     setErrorMessage('');
+    setEmailError('')
+    setPasswordError('')
+
    
 
     if (!email ) {
@@ -101,7 +107,7 @@ function LandingLogin() {
                 
               />
               {errorMessage && <p className="error-message">{errorMessage}</p>}
-              
+               
               
               <input
                 type="password"
@@ -111,6 +117,7 @@ function LandingLogin() {
                 autoComplete="password"
                 
               />
+              {passwordError && <p className="error-message">{passwordError}</p>}
               <button className="opacity" type="submit" onClick={handleLogin}>
                 SUBMIT
               </button>

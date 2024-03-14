@@ -31,11 +31,13 @@ export default function DashBoardPage() {
     
             {/* Tile 3 */}
             <div className='tile'>
+            <Link to={'/viewUser'}>
               
               <div className='content'>
-                <h1>PROFILE</h1>
+                <h1>USER LIST</h1>
               
               </div>
+              </Link>
               
             </div>
     
