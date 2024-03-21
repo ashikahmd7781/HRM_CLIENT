@@ -34,8 +34,7 @@ const UserListPage = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th> Name</th>
             <th>Email</th>
             <th>Password</th>
             <th>Edit</th>
@@ -47,10 +46,7 @@ const UserListPage = () => {
             <tr key={data._id}>
               <td>{data._id}</td>
               <td>
-                <div>{data.first_name}</div>
-              </td>
-              <td>
-                <div>{data.last_name}</div>
+                <div>{data.name}</div>
               </td>
               <td>
                 <div>{data.email}</div>

@@ -7,8 +7,7 @@ import './User.css';
 
 
 function AddUserPage() {
-  const [first_name, setFirstname] = useState('');
-  const [last_name, setLastname] = useState('');
+  const [name, setname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -23,14 +22,9 @@ function AddUserPage() {
     return password.length >= 6;
   };
 
-  const handleFirstnameChange = (e) => {
-    setFirstname(e.target.value);
+  const handlenameChange = (e) => {
+    setname(e.target.value);
   };
-
-  const handleLastnameChange = (e) => {
-    setLastname(e.target.value);
-  };
-
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -38,6 +32,22 @@ function AddUserPage() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  const handleOutsideClick = (e) => {
+   
+    if (!e.target.closest('input')) {
+      setErrors({});
+    }
+  };
+
+  useEffect(() => {
+    // Attach the event listener when the component mounts
+    document.addEventListener('click', handleOutsideClick);
+
+    
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []); 
 
   
 
@@ -48,12 +58,8 @@ function AddUserPage() {
     const newErrors = {};
 
 
-    if (!first_name) {
-      newErrors.first_name = 'First name is required';
-    }
-
-    if (!last_name) {
-      newErrors.last_name = 'Last name is required';
+    if (!name) {
+      newErrors.name = ' name is required';
     }
 
     if (!email) {
@@ -90,19 +96,15 @@ function AddUserPage() {
       //   return;
       // }
       const response = await axios.post(`${HOSTED_SERVER_URL}/users`, {
-        first_name,
-        last_name,
+        name,
         email,
         password,
       });
 
-      console.log('Response:', response);
-
       if (response && response.data && response.data.statusCode) {
         alert('Form submitted successfully');
         console.log('Form submitted successfully');
-        setFirstname('');
-        setLastname('');
+        setname('');
         setEmail('');
         setPassword('');
         // navigate.push('/Success');
@@ -148,10 +150,8 @@ function AddUserPage() {
             /> */}
             <h1 className="opacity">ADD USER</h1>
             <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="First Name" value={first_name} onChange={handleFirstnameChange} />
-              {errors.first_name && <p className='error-message'>{errors.first_name}</p>}
-              <input type="text" placeholder="Last Name" value={last_name} onChange={handleLastnameChange} />
-              {errors.last_name && <p className='error-message'>{errors.last_name}</p>}
+              <input type="text" placeholder=" Name" value={name} onChange={handlenameChange} />
+              {errors.name && <p className='error-message'>{errors.name}</p>}
               <input type="email" placeholder="EMAIL" value={email}  onChange={handleEmailChange} />
               {errors.email && <p className='error-message'>{errors.email}</p>}
               <input type="password" placeholder="PASSWORD" autoComplete="password" value={password} onChange={handlePasswordChange} />
@@ -161,8 +161,6 @@ function AddUserPage() {
 
 
           </div>
-
-          <div className="circle circle-two"></div>
         </div>
         <div className="theme-btn-container"></div>
       </section>

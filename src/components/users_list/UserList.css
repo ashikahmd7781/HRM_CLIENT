@@ -9,7 +9,7 @@ table {
   
 
   th {
-    background-color: #f33c3c;
+    background-color: #3cc5f39c;
     padding: 10px;
     text-align: left;
     font-weight: bold;
@@ -18,20 +18,20 @@ table {
   
  
   tr:nth-child(even) {
-    background-color: #c93a3a;
+    background-color: #3a95c9;
   } 
   
 
   td {
     padding: 10px;
-    color: #45a049;
+    color: #3baa41;
   }
   
   input {
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
-    color: #6fb622;
+    color: #538221;
   }
   
 
